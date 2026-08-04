@@ -1,0 +1,6 @@
+{
+  "name": "Estelle Farms",
+  "description": "Boutique luxury rose farm website with full desktop and mobile responsive views, featuring rose collection, stem specifications, founder story, and interactive enquiry modal.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
