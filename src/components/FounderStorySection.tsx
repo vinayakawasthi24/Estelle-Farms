@@ -1,5 +1,5 @@
 import React from 'react';
-import { farmTeamImg } from '../data/roses';
+import { farmTeamImg, founderPortraitImg } from '../data/roses';
 import { Quote } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useMobileView } from '../context/MobileContext';
@@ -69,13 +69,13 @@ export const FounderStorySection: React.FC = () => {
             {/* 1. Founder Portrait Photo (now Team Photo) */}
             <div className="relative rounded-2xl overflow-hidden border border-[#E8D8D5] shadow-md group bg-white">
               <img
-                src={farmTeamImg}
-                alt="Estelle Farms Team"
+                src={founderPortraitImg}
+                alt="Estelle Farms Founder"
                 referrerPolicy="no-referrer"
                 className="w-full h-64 sm:h-96 object-cover object-top transform transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 sm:p-6 text-white">
-                <div className="font-serif-display text-base sm:text-xl font-medium">Estelle Farms Team</div>
+                <div className="font-serif-display text-base sm:text-xl font-medium">Estelle Farms Founder</div>
                 <div className="text-[10px] sm:text-xs text-white/80 tracking-wider uppercase font-mono">Biotechnologist &amp; Cultivator</div>
               </div>
             </div>

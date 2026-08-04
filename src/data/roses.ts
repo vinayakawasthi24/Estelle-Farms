@@ -9,8 +9,8 @@ import founderImg from '../assets/images/founder_estelle_farms_1785832319658.jpg
 import farmLandscapeImg from '../assets/images/estelle_farm_landscape_1785832349542.jpg';
 import estelleLogoImg from '../assets/images/estelle_farms_logo_1785833517778.jpg';
 import heroRoseFarmBgImg from '../assets/images/hero_rose_farm_bg_1785833536027.jpg';
-import founderPortraitImg from '../assets/images/founder_portrait_photo_1785835873007.jpg';
-import farmTeamImg from '../assets/images/estelle_farm_team_photo_1785835889731.jpg';
+import founderPortraitImg from '../assets/images/founder_photo_import.jpg';
+import farmTeamImg from '../assets/images/team_photo_import.jpg';
 
 export { founderImg, farmLandscapeImg, estelleLogoImg, heroRoseFarmBgImg, founderPortraitImg, farmTeamImg };
 
