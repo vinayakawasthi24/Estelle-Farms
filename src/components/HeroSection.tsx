@@ -16,17 +16,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenEnquire }) => {
   };
 
   return (
-    <section id="hero" className="relative pt-10 pb-16 sm:pt-16 sm:pb-24 md:pt-24 md:pb-32 overflow-hidden">
+    <section id="hero" className="relative min-h-[75vh] pt-10 pb-16 sm:pt-16 sm:pb-24 md:pt-24 md:pb-32 overflow-hidden">
       
       {/* Background Image of Rose Farm Greenhouse */}
       <div className="absolute inset-0 -z-20 overflow-hidden">
-        <img 
-          src={heroRoseFarmBgImg} 
-          alt="Estelle Farms Rose Farm Greenhouse" 
-          referrerPolicy="no-referrer"
-          className="w-full h-full object-cover object-center scale-105 opacity-25 filter brightness-105 saturate-110 transform transition-transform duration-1000"
+        <img
+          src={heroRoseFarmBgImg}
+          alt="Estelle Farms Rose Farm Greenhouse"
+          className="w-full h-full object-cover object-center scale-105 opacity-100 filter brightness-100 saturate-110"
+          aria-hidden="true"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#FAF2F0]/80 via-[#FAF2F0]/90 to-[#FAF2F0]" />
+        <div className="absolute inset-0 bg-[#FAF2F0]/10" />
       </div>
 
       {/* Subtle Background Accent Orbs */}
