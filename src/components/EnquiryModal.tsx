@@ -33,12 +33,51 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose, sel
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    const roseName = ROSE_COLLECTION.find((r) => r.id === varietyId)?.name || 'Quintet Assortment';
     
-    // Simulate swift farm request processing
+    // Construct pre-filled WhatsApp inquiry message
+    const messageText = `*New Rose Stem Enquiry — Estelle Farms*\n\n` +
+      `*Name:* ${fullName}\n` +
+      `*Phone:* ${phone}\n` +
+      `*Email:* ${email || 'N/A'}\n` +
+      `*Variety:* ${roseName}\n` +
+      `*Stem Quantity:* ${stemCount} stems\n` +
+      `*Purpose:* ${purpose}\n` +
+      `*Delivery City:* ${deliveryCity || 'N/A'}\n` +
+      `*Notes:* ${notes || 'None'}`;
+
+    const whatsappUrl = `https://wa.me/917715006066?text=${encodeURIComponent(messageText)}`;
+
+    // Store in localStorage for persistence
+    try {
+      const existing = JSON.parse(localStorage.getItem('estelle_enquiries') || '[]');
+      existing.unshift({
+        id: Date.now(),
+        fullName,
+        phone,
+        email,
+        varietyId,
+        roseName,
+        stemCount,
+        purpose,
+        deliveryCity,
+        notes,
+        submittedAt: new Date().toISOString()
+      });
+      localStorage.setItem('estelle_enquiries', JSON.stringify(existing));
+    } catch (err) {
+      console.error('Failed to save enquiry locally', err);
+    }
+    
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
-    }, 1000);
+      // Automatically open WhatsApp in new tab with the enquiry pre-filled
+      if (typeof window !== 'undefined') {
+        window.open(whatsappUrl, '_blank');
+      }
+    }, 800);
   };
 
   const handleReset = () => {
@@ -97,12 +136,22 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose, sel
                     Enquiry Received!
                   </h4>
                   <p className="font-sans-body text-xs sm:text-sm text-[#5A4E4B] max-w-md mx-auto leading-relaxed">
-                    Thank you, <span className="font-bold text-[#1C1917]">{fullName}</span>. Our Karera farm concierge will contact you shortly at <span className="font-bold text-[#C52828]">{phone}</span> with availability and cold-chain shipping details.
+                    Thank you, <span className="font-bold text-[#1C1917]">{fullName}</span>. Your enquiry details have been prepared for direct dispatch to our Karera farm helpline at <span className="font-bold text-[#C52828]">+91 77150 06066</span>.
                   </p>
-                  <div className="pt-2">
+                  <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <a
+                      href={`https://wa.me/917715006066?text=${encodeURIComponent(
+                        `*New Rose Stem Enquiry — Estelle Farms*\n\n*Name:* ${fullName}\n*Phone:* ${phone}\n*Email:* ${email || 'N/A'}\n*Stem Quantity:* ${stemCount} stems\n*Purpose:* ${purpose}\n*Delivery City:* ${deliveryCity || 'N/A'}\n*Notes:* ${notes || 'None'}`
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold text-xs tracking-wider uppercase px-6 py-3 rounded-full transition-colors inline-flex items-center gap-2 shadow-sm"
+                    >
+                      <span>Open WhatsApp Chat</span>
+                    </a>
                     <button
                       onClick={handleReset}
-                      className="bg-[#C52828] text-white font-semibold text-xs tracking-widest uppercase px-8 py-3 rounded-full hover:bg-[#A31D1D] transition-colors cursor-pointer"
+                      className="bg-[#FAF2F0] text-[#1C1917] border border-[#E8D8D5] hover:bg-[#EFE0DC] font-semibold text-xs tracking-widest uppercase px-6 py-3 rounded-full transition-colors cursor-pointer"
                     >
                       Done
                     </button>
